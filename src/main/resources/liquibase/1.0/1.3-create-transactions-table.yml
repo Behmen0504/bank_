@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5
+      author: Behmen Memmedov
+      changes:
+        - createTable:
+            tableName: transactions
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    remarks: id of transactions
+              - column:
+                  name: sender_account_id
+                  type: integer
+                  constraints:
+                    foreignKeyName: fk_transactions_to_bank_accounts
+                    references: bank_accounts(id)
+              - column:
+                  name: receiver_account_id
+                  type: integer
+                  constraints:
+                    foreignKeyName: fk_transactions_to_bank_accounts_
+                    references: bank_accounts(id)
+              - column:
+                  name: amount
+                  type: decimal
+              - column:
+                  name: status
+                  type: varchar(32)
+              - column:
+                  name: created_at
+                  type: timestamp

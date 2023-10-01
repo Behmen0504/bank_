@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Behmen Memmedov
+      changes:
+        - createTable:
+            tableName: bank_accounts
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    remarks: id of bank_accounts
+              - column:
+                  name: status
+                  type: varchar(32)
+              - column:
+                  name: user_id
+                  type: integer
+                  constraints:
+                    foreignKeyName: fk_bank_accounts_to_users
+                    references: users(id)
+              - column:
+                  name: balance
+                  type: decimal
+              - column:
+                  name: amount
+                  type: decimal
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp
