@@ -6,10 +6,25 @@ import java.math.BigDecimal;
 
 
 public class BankAccountRequestDTO {
-    private BigDecimal balance;
-    private BigDecimal amount;
-    private Status status;
-    private Long userId = 1L;
+    private BigDecimal balance = BigDecimal.valueOf(300);
+    private Status status = Status.DEACTIVE;
+
+    @Override
+    public String toString() {
+        return "BankAccountRequestDTO{" +
+                "balance=" + balance +
+                ", status=" + status +
+                '}';
+    }
+
+    public BankAccountRequestDTO() {
+
+    }
+
+    public BankAccountRequestDTO(BigDecimal balance, Status status) {
+        this.balance = balance;
+        this.status = status;
+    }
 
     public BigDecimal getBalance() {
         return balance;
@@ -19,13 +34,6 @@ public class BankAccountRequestDTO {
         this.balance = balance;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
 
     public Status getStatus() {
         return status;
@@ -35,11 +43,4 @@ public class BankAccountRequestDTO {
         this.status = status;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 }

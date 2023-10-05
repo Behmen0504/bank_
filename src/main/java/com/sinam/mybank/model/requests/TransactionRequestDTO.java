@@ -6,9 +6,27 @@ import java.math.BigDecimal;
 
 public class TransactionRequestDTO {
     private BigDecimal amount;
-    private Status status = Status.DEACTIVE;
-    private Long senderAccountId;
+    private Long senderAccountId;//uuid etmek
     private Long receiverAccountId;
+
+    @Override
+    public String toString() {
+        return "TransactionRequestDTO{" +
+                "amount=" + amount +
+                ", senderAccountId=" + senderAccountId +
+                ", receiverAccountId=" + receiverAccountId +
+                '}';
+    }
+
+    public TransactionRequestDTO() {
+
+    }
+
+    public TransactionRequestDTO(BigDecimal amount, Long senderAccountId, Long receiverAccountId) {
+        this.amount = amount;
+        this.senderAccountId = senderAccountId;
+        this.receiverAccountId = receiverAccountId;
+    }
 
     public BigDecimal getAmount() {
         return amount;
@@ -18,13 +36,6 @@ public class TransactionRequestDTO {
         this.amount = amount;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
 
     public Long getSenderAccountId() {
         return senderAccountId;

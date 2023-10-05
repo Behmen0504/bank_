@@ -26,9 +26,9 @@ databaseChangeLog:
               - column:
                   name: balance
                   type: decimal
-              - column:
-                  name: amount
-                  type: decimal
+#              - column:
+#                  name: amount
+#                  type: decimal
               - column:
                   name: created_at
                   type: timestamp

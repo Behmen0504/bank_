@@ -16,6 +16,11 @@ import java.util.List;
 public abstract class TransactionMapper {
     public static final TransactionMapper INSTANCE = Mappers.getMapper(TransactionMapper.class);
 
+
+    @Mappings({
+            @Mapping(source = "transactionEntity.senderAccountEntity.id",target = "senderAccountId"),
+            @Mapping(source = "transactionEntity.receiverAccountEntity.id",target = "receiverAccountId")
+    })
     public abstract TransactionDTO mapEntityToDto(TransactionEntity transactionEntity);
 
     @Mappings({

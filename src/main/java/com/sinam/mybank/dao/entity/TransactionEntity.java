@@ -17,9 +17,6 @@ public class TransactionEntity {
     private Long id;
     private BigDecimal amount;
 
-    @Enumerated(EnumType.STRING)
-    private Status status;
-
     @JsonBackReference
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "sender_account_id")
@@ -32,6 +29,29 @@ public class TransactionEntity {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @Override
+    public String toString() {
+        return "TransactionEntity{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", senderAccountEntity=" + senderAccountEntity.getId() +
+                ", receiverAccountEntity=" + receiverAccountEntity.getId() +
+                ", createdAt=" + createdAt +
+                '}';
+    }
+
+    public TransactionEntity() {
+
+    }
+
+    public TransactionEntity(Long id, BigDecimal amount, BankAccountEntity senderAccountEntity, BankAccountEntity receiverAccountEntity, LocalDateTime createdAt) {
+        this.id = id;
+        this.amount = amount;
+        this.senderAccountEntity = senderAccountEntity;
+        this.receiverAccountEntity = receiverAccountEntity;
+        this.createdAt = createdAt;
+    }
 
     public Long getId() {
         return id;
@@ -47,14 +67,6 @@ public class TransactionEntity {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 
     public BankAccountEntity getSenderAccountEntity() {

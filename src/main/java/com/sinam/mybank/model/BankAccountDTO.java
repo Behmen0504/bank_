@@ -1,22 +1,27 @@
 package com.sinam.mybank.model;
 
-import com.sinam.mybank.dao.entity.TransactionEntity;
 import com.sinam.mybank.myenums.Status;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class BankAccountDTO {
     private Long id;
 
     private BigDecimal balance;
-    private BigDecimal amount;
     private Status status;
-    private List<TransactionEntity> senderTransactionEntities;
-    private List<TransactionEntity> receiverTransactionEntities;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    public BankAccountDTO() {}
+
+    public BankAccountDTO(Long id, BigDecimal balance, Status status, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.balance = balance;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
 
     public Long getId() {
         return id;
@@ -34,36 +39,12 @@ public class BankAccountDTO {
         this.balance = balance;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
     public Status getStatus() {
         return status;
     }
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public List<TransactionEntity> getSenderTransactionEntities() {
-        return senderTransactionEntities;
-    }
-
-    public void setSenderTransactionEntities(List<TransactionEntity> senderTransactionEntities) {
-        this.senderTransactionEntities = senderTransactionEntities;
-    }
-
-    public List<TransactionEntity> getReceiverTransactionEntities() {
-        return receiverTransactionEntities;
-    }
-
-    public void setReceiverTransactionEntities(List<TransactionEntity> receiverTransactionEntities) {
-        this.receiverTransactionEntities = receiverTransactionEntities;
     }
 
     public LocalDateTime getCreatedAt() {

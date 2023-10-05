@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sinam.mybank.myenums.Status;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
@@ -19,7 +20,7 @@ public class BankAccountEntity {
     private Long id;
 
     private BigDecimal balance;
-    private BigDecimal amount;
+//    private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -42,6 +43,37 @@ public class BankAccountEntity {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+//    @Override
+//    public String toString() {
+//        return "BankAccountEntity{" +
+//                "id=" + id +
+//                ", balance=" + balance +
+////                ", amount=" + amount +
+//                ", status=" + status +
+//                ", userEntity=" + userEntity +
+//                ", senderTransactionEntities=" + senderTransactionEntities +
+//                ", receiverTransactionEntities=" + receiverTransactionEntities +
+//                ", createdAt=" + createdAt +
+//                ", updatedAt=" + updatedAt +
+//                '}';
+//    }
+
+    public BankAccountEntity() {
+
+    }
+
+    public BankAccountEntity(Long id, BigDecimal balance, /*BigDecimal amount,*/ Status status, UserEntity userEntity, List<TransactionEntity> senderTransactionEntities, List<TransactionEntity> receiverTransactionEntities, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.balance = balance;
+//        this.amount = amount;
+        this.status = status;
+        this.userEntity = userEntity;
+        this.senderTransactionEntities = senderTransactionEntities;
+        this.receiverTransactionEntities = receiverTransactionEntities;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     public Long getId() {
         return id;
     }
@@ -58,13 +90,13 @@ public class BankAccountEntity {
         this.balance = balance;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
+//    public BigDecimal getAmount() {
+//        return amount;
+//    }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
+//    public void setAmount(BigDecimal amount) {
+//        this.amount = amount;
+//    }
 
     public Status getStatus() {
         return status;
@@ -80,6 +112,22 @@ public class BankAccountEntity {
 
     public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
+    }
+
+    public List<TransactionEntity> getSenderTransactionEntities() {
+        return senderTransactionEntities;
+    }
+
+    public void setSenderTransactionEntities(List<TransactionEntity> senderTransactionEntities) {
+        this.senderTransactionEntities = senderTransactionEntities;
+    }
+
+    public List<TransactionEntity> getReceiverTransactionEntities() {
+        return receiverTransactionEntities;
+    }
+
+    public void setReceiverTransactionEntities(List<TransactionEntity> receiverTransactionEntities) {
+        this.receiverTransactionEntities = receiverTransactionEntities;
     }
 
     public LocalDateTime getCreatedAt() {

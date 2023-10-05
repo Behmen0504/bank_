@@ -7,14 +7,18 @@ import com.sinam.mybank.myenums.Status;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 
 @Entity
 @Table(name = "users")
-public class UserEntity /*implements UserDetails*/ {
+public class UserEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
@@ -43,6 +47,27 @@ public class UserEntity /*implements UserDetails*/ {
     LocalDateTime createdAt;
     @UpdateTimestamp
     LocalDateTime updatedAt;
+
+
+    public UserEntity() {
+
+    }
+
+    public UserEntity(Long id, String name, String surname, String fin, String email, String password, Status status, Gender gender, Role role, List<BankAccountEntity> bankAccountEntityList, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.fin = fin;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.gender = gender;
+        this.role = role;
+        this.bankAccountEntityList = bankAccountEntityList;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     public Long getId() {
         return id;
     }
@@ -58,6 +83,7 @@ public class UserEntity /*implements UserDetails*/ {
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
+
     public String getName() {
         return name;
     }
@@ -90,10 +116,6 @@ public class UserEntity /*implements UserDetails*/ {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -114,6 +136,22 @@ public class UserEntity /*implements UserDetails*/ {
         this.role = role;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public List<BankAccountEntity> getBankAccountEntityList() {
+        return bankAccountEntityList;
+    }
+
+    public void setBankAccountEntityList(List<BankAccountEntity> bankAccountEntityList) {
+        this.bankAccountEntityList = bankAccountEntityList;
+    }
+
     @Override
     public String toString() {
         return "UserEntity{" +
@@ -123,7 +161,8 @@ public class UserEntity /*implements UserDetails*/ {
                 ", fin='" + fin + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", gender='" + gender + '\'' +
+                ", status=" + status +
+                ", gender=" + gender +
                 ", role=" + role +
                 ", bankAccountEntityList=" + bankAccountEntityList +
                 ", createdAt=" + createdAt +
@@ -131,39 +170,38 @@ public class UserEntity /*implements UserDetails*/ {
                 '}';
     }
 
-    //    @JsonManagedReference
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    List<FavoriteEntity> favorites;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
 
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-////        return List.of(new SimpleGrantedAuthority(role.name()));
-//        return null;
-//    }
-//
-//    @Override
-//    public String getUsername() {
-//        return email;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return true;
-//    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

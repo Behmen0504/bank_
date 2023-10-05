@@ -5,6 +5,7 @@ import com.sinam.mybank.myenums.Gender;
 import com.sinam.mybank.myenums.Role;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class UserDTO {
     private Long id;
@@ -14,8 +15,51 @@ public class UserDTO {
     private String fin;
     private Gender gender;
     private Role role;
+    private List<BankAccountDTO> bankAccountDTOList;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", fin='" + fin + '\'' +
+                ", gender=" + gender +
+                ", role=" + role +
+                ", bankAccountDTOList=" + bankAccountDTOList +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
+
+    public UserDTO() {
+
+    }
+
+    public UserDTO(Long id, String name, String surname, String email, String fin, Gender gender, Role role, List<BankAccountDTO> bankAccountDTOList, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.fin = fin;
+        this.gender = gender;
+        this.role = role;
+        this.bankAccountDTOList = bankAccountDTOList;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public List<BankAccountDTO> getBankAccountDTOList() {
+        return bankAccountDTOList;
+    }
+
+    public void setBankAccountDTOList(List<BankAccountDTO> bankAccountDTOList) {
+        this.bankAccountDTOList = bankAccountDTOList;
+    }
 
     public Long getId() {
         return id;
