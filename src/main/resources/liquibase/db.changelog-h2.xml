@@ -1,0 +1,16 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"-->
+<!--                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">-->
+
+<!--    &lt;!&ndash; PostgreSQL ile uyumlu değişiklikler &ndash;&gt;-->
+<!--    <changeSet id="1" author="Behmen">-->
+<!--        &lt;!&ndash; PostgreSQL için uygun değişiklik &ndash;&gt;-->
+<!--    </changeSet>-->
+
+<!--    &lt;!&ndash; H2 veritabanı için uygun değişiklikler &ndash;&gt;-->
+<!--    <changeSet id="2" author="Behmen">-->
+<!--        &lt;!&ndash; H2 veritabanı için uygun değişiklik &ndash;&gt;-->
+<!--    </changeSet>-->
+
+<!--</databaseChangeLog>-->

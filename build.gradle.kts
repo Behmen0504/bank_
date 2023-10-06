@@ -44,6 +44,9 @@ dependencies {
 
 	//db
 	runtimeOnly("com.h2database:h2")
+
+	//validation
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 }
 
 tasks.withType<Test> {

@@ -6,8 +6,12 @@ import com.sinam.mybank.mapper.UserMapper;
 import com.sinam.mybank.model.auth.UserRegisterRequestDto;
 import com.sinam.mybank.model.auth.AuthRequestDto;
 import com.sinam.mybank.model.auth.AuthenticationResponse;
+import com.sinam.mybank.model.exception.InvalidCredentialsException;
+import com.sinam.mybank.model.exception.UserNotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -45,14 +49,20 @@ public class AuthService {
     }
 
     public AuthenticationResponse authenticate(AuthRequestDto authRequestDto) {
-        authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        authRequestDto.getEmail(),
-                        authRequestDto.getPassword()
-                )
-        );
+        try{
+            authManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            authRequestDto.getEmail(),
+                            authRequestDto.getPassword()
+                    )
+            );
+        }catch (AuthenticationException e){
+            throw new InvalidCredentialsException("Email or password is invalid");
+        }
 
-        UserEntity user = userRepository.findUserByEmail(authRequestDto.getEmail()).orElseThrow();
+        UserEntity user = userRepository.findUserByEmail(authRequestDto.getEmail()).orElseThrow(
+                ()->new UserNotFoundException("USER_NOT_FOUND")
+        );
         var jwtToken = jwtService.generateToken(user);
 
         AuthenticationResponse authenticationResponse = new AuthenticationResponse();

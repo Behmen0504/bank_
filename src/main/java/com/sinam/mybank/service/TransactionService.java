@@ -15,6 +15,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 
 @Service
@@ -46,8 +47,8 @@ public class TransactionService {
                 ()->new NotFoundException("BANK_ACCOUNT_NOT_FOUND")
         );
 
-        if (userId != senderBankAccountEntity.getUserEntity().getId()){
-            throw new AccountIsNotClosedToUserException("AccountIsNotClosedToUserException");
+        if (!Objects.equals(userId, senderBankAccountEntity.getUserEntity().getId())){
+            throw new AccountIsNotClosedToUserException("ACCOUNT_IS_NOT_CLOSED_TO_USER");
         }
 
         BankAccountEntity receiverrBankAccountEntity = bankAccountRepository.findByIdForTransfer(transactionRequestDTO.getReceiverAccountId()).orElseThrow(

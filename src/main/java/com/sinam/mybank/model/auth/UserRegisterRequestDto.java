@@ -2,13 +2,30 @@ package com.sinam.mybank.model.auth;
 
 import com.sinam.mybank.myenums.Role;
 import com.sinam.mybank.myenums.Status;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class UserRegisterRequestDto {
+
+    @NotBlank(message = "Name is required")
     private String name;
+
+    @NotBlank(message = "Surname is required")
     private String surname;
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
     private String email;
+
+    @NotBlank(message = "Password is required")
+    @Size(min = 3, message = "Password must be at least 3 characters")
     private String password;
+
+    @NotBlank(message = "Fin is required")
     private String fin;
+
+    @NotBlank(message = "Gender is required")
     private String gender;
     private Role role = Role.USER;
     private Status status = Status.ACTIVE;

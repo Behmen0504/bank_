@@ -1,12 +1,21 @@
 package com.sinam.mybank.model.requests;
 
-import com.sinam.mybank.myenums.Status;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
 
 public class TransactionRequestDTO {
+    @DecimalMin(value = "0.0", message = "Amount should not be less than 0.0")
     private BigDecimal amount;
-    private Long senderAccountId;//uuid etmek
+
+    @NotBlank(message = "Sender Account Id is required")
+    @Positive(message = "Sender Account Id should be a positive number")
+    private Long senderAccountId;
+
+    @NotBlank(message = "Receiver Account Id is required")
+    @Positive(message = "Receiver Account Id should be a positive number")
     private Long receiverAccountId;
 
     @Override

@@ -1,11 +1,13 @@
 package com.sinam.mybank.model.requests;
 
 import com.sinam.mybank.myenums.Status;
+import jakarta.validation.constraints.DecimalMin;
 
 import java.math.BigDecimal;
 
 
 public class BankAccountRequestDTO {
+    @DecimalMin(value = "0.0", message = "Balance should not be less than 0.0")
     private BigDecimal balance = BigDecimal.valueOf(300);
     private Status status = Status.DEACTIVE;
 

@@ -28,13 +28,10 @@ public class BankAccountService {
         this.userRepository = userRepository;
     }
 
-    //admin
-
     public List<BankAccountDTO> getBankAccounts(Long bankAccountId,String pin) {
         return BankAccountMapper.INSTANCE.mapEntitiesToDtos(bankAccountRepository.findAllByIdAndUserEntity_Fin(bankAccountId,pin));
     }
 
-    //admin
     public BankAccountDTO getBankAccount(Long id) {
         return BankAccountMapper.INSTANCE.mapEntityToDto(bankAccountRepository.findById(id).orElseThrow(
                 () -> new NotFoundException("BANK_ACCOUNT_NOT_FOUND")

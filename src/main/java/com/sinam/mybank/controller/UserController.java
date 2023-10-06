@@ -50,22 +50,5 @@ public class UserController {
     public void addBankAccount(@RequestBody BankAccountRequestDTO requestDTO){
         bankAccountService.addBankAccount(requestDTO);
     }
-//
-//    @PostMapping()
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public void addUser(@RequestBody UserRequestDTO requestDTO){
-//        userService.addUser(requestDTO);
-//    }
-//
-//    @PutMapping("/{id}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public void updateUser(@PathVariable Long id,@RequestBody UserRequestDTO userRequestDTO){
-//        userService.updateUser(id,userRequestDTO);
-//    }
-//    @DeleteMapping("/{id}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void deleteUser(@PathVariable Long id){
-//        userService.deleteUser(id);
-//    }
 
 }
