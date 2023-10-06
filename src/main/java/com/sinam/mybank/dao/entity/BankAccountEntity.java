@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sinam.mybank.myenums.Status;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
@@ -20,7 +19,6 @@ public class BankAccountEntity {
     private Long id;
 
     private BigDecimal balance;
-//    private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -31,11 +29,11 @@ public class BankAccountEntity {
     private UserEntity userEntity;
 
     @JsonManagedReference
-    @OneToMany(cascade = {CascadeType.MERGE},mappedBy = "senderAccountEntity")
+    @OneToMany(cascade = {CascadeType.MERGE}, mappedBy = "senderAccountEntity")
     private List<TransactionEntity> senderTransactionEntities;
 
     @JsonManagedReference
-    @OneToMany(cascade = {CascadeType.MERGE},mappedBy = "receiverAccountEntity")
+    @OneToMany(cascade = {CascadeType.MERGE}, mappedBy = "receiverAccountEntity")
     private List<TransactionEntity> receiverTransactionEntities;
 
     @CreationTimestamp
@@ -43,29 +41,28 @@ public class BankAccountEntity {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-//    @Override
-//    public String toString() {
-//        return "BankAccountEntity{" +
-//                "id=" + id +
-//                ", balance=" + balance +
-////                ", amount=" + amount +
-//                ", status=" + status +
-//                ", userEntity=" + userEntity +
-//                ", senderTransactionEntities=" + senderTransactionEntities +
-//                ", receiverTransactionEntities=" + receiverTransactionEntities +
-//                ", createdAt=" + createdAt +
-//                ", updatedAt=" + updatedAt +
-//                '}';
-//    }
 
     public BankAccountEntity() {
 
     }
 
-    public BankAccountEntity(Long id, BigDecimal balance, /*BigDecimal amount,*/ Status status, UserEntity userEntity, List<TransactionEntity> senderTransactionEntities, List<TransactionEntity> receiverTransactionEntities, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    @Override
+    public String toString() {
+        return "BankAccountEntity{" +
+                "id=" + id +
+                ", balance=" + balance +
+                ", status=" + status +
+                ", userEntity=" + userEntity +
+                ", senderTransactionEntities=" + senderTransactionEntities +
+                ", receiverTransactionEntities=" + receiverTransactionEntities +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
+
+    public BankAccountEntity(Long id, BigDecimal balance, Status status, UserEntity userEntity, List<TransactionEntity> senderTransactionEntities, List<TransactionEntity> receiverTransactionEntities, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.balance = balance;
-//        this.amount = amount;
         this.status = status;
         this.userEntity = userEntity;
         this.senderTransactionEntities = senderTransactionEntities;
@@ -89,14 +86,6 @@ public class BankAccountEntity {
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
-
-//    public BigDecimal getAmount() {
-//        return amount;
-//    }
-
-//    public void setAmount(BigDecimal amount) {
-//        this.amount = amount;
-//    }
 
     public Status getStatus() {
         return status;

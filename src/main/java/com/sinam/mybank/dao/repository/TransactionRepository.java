@@ -13,7 +13,6 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<TransactionEntity, Long> {
     List<TransactionEntity> findAllBySenderAccountEntityId(Long id);
 
-
     @Query("SELECT t FROM TransactionEntity t JOIN BankAccountEntity b ON b.id = t.senderAccountEntity.id or b.id = t.receiverAccountEntity.id JOIN UserEntity u ON b.userEntity.id = u.id where u.id=:userId")
     List<TransactionEntity> findAllByUserId(Long userId);
 

@@ -1,7 +1,6 @@
 package com.sinam.mybank.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.sinam.mybank.myenums.Status;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 

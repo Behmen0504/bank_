@@ -1,7 +1,5 @@
 package com.sinam.mybank.model;
 
-import com.sinam.mybank.myenums.Status;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 

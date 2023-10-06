@@ -1,18 +1,11 @@
 package com.sinam.mybank.service;
 
 import com.sinam.mybank.dao.entity.UserEntity;
-import com.sinam.mybank.dao.repository.BankAccountRepository;
 import com.sinam.mybank.dao.repository.UserRepository;
-import com.sinam.mybank.mapper.BankAccountMapper;
 import com.sinam.mybank.mapper.UserMapper;
-import com.sinam.mybank.model.BankAccountDTO;
 import com.sinam.mybank.model.UserDTO;
-import com.sinam.mybank.model.exception.NotFoundException;
-import com.sinam.mybank.myenums.Status;
 import com.sinam.mybank.service.auth.AuthService;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 
 @Service

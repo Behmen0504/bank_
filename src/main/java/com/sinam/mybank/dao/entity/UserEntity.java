@@ -154,20 +154,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public String toString() {
-        return "UserEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", fin='" + fin + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", status=" + status +
-                ", gender=" + gender +
-                ", role=" + role +
-                ", bankAccountEntityList=" + bankAccountEntityList +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+        return "UserEntity{" + "id=" + id + ", name='" + name + '\'' + ", surname='" + surname + '\'' + ", fin='" + fin + '\'' + ", email='" + email + '\'' + ", password='" + password + '\'' + ", status=" + status + ", gender=" + gender + ", role=" + role + ", bankAccountEntityList=" + bankAccountEntityList + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
     }
 
     @Override

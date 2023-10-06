@@ -28,8 +28,8 @@ public class BankAccountService {
         this.userRepository = userRepository;
     }
 
-    public List<BankAccountDTO> getBankAccounts(Long bankAccountId,String pin) {
-        return BankAccountMapper.INSTANCE.mapEntitiesToDtos(bankAccountRepository.findAllByIdAndUserEntity_Fin(bankAccountId,pin));
+    public List<BankAccountDTO> getBankAccounts(Long bankAccountId, String pin) {
+        return BankAccountMapper.INSTANCE.mapEntitiesToDtos(bankAccountRepository.findAllByIdAndUserEntity_Fin(bankAccountId, pin));
     }
 
     public BankAccountDTO getBankAccount(Long id) {
@@ -68,7 +68,7 @@ public class BankAccountService {
                 () -> new NotFoundException("USER_NOT_FOUND_EXCEPTION")
         );
         var bankAccount = bankAccountRepository.findByIdForTransfer(id).orElseThrow(
-                ()->new NotFoundException("BANK_ACCOUNT_NOT_FOUND")
+                () -> new NotFoundException("BANK_ACCOUNT_NOT_FOUND")
         );
         if (bankAccount == null) {
             throw new NotFoundException("BANK_ACCOUNT_NOT_FOUND");
@@ -80,13 +80,14 @@ public class BankAccountService {
 
         bankAccountRepository.save(bankAccount);
     }
+
     public void deleteBankAccount(Long id) {
     }
 
     public void activateBankAccount(Long bankAccountId) {
         Long usId = AuthService.getUser().getId();
-        BankAccountEntity bankAccountEntity = bankAccountRepository.findByIdAndUserEntity_Id(bankAccountId,usId).orElseThrow(
-                ()->new NotFoundException("BANK_ACCOUNT_NOT_FOUND")
+        BankAccountEntity bankAccountEntity = bankAccountRepository.findByIdAndUserEntity_Id(bankAccountId, usId).orElseThrow(
+                () -> new NotFoundException("BANK_ACCOUNT_NOT_FOUND")
         );
         bankAccountEntity.setStatus(Status.ACTIVE);
         bankAccountRepository.save(bankAccountEntity);

@@ -13,7 +13,8 @@ public class BankAccountDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public BankAccountDTO() {}
+    public BankAccountDTO() {
+    }
 
     public BankAccountDTO(Long id, BigDecimal balance, Status status, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;

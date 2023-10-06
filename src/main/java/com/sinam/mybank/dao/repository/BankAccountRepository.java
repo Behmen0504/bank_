@@ -8,13 +8,12 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
 
 @Repository
-public interface BankAccountRepository extends JpaRepository<BankAccountEntity,Long> {
+public interface BankAccountRepository extends JpaRepository<BankAccountEntity, Long> {
     Optional<BankAccountEntity> findByIdAndUserEntity_Id(Long id, Long userId);
 
     List<BankAccountEntity> findAllByUserEntity_Id(Long id);

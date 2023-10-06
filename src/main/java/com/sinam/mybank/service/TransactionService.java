@@ -10,7 +10,6 @@ import com.sinam.mybank.model.exception.AmountGreaterThanBalanceException;
 import com.sinam.mybank.model.exception.NotFoundException;
 import com.sinam.mybank.model.requests.TransactionRequestDTO;
 import com.sinam.mybank.service.auth.AuthService;
-import jakarta.transaction.Status;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +35,7 @@ public class TransactionService {
     public List<TransactionDTO> getAllTransactionsByUserId() {
         return TransactionMapper.INSTANCE.mapEntitiesToDtos(transactionRepository.findAllByUserId(AuthService.getUser().getId()));
     }
+
     public List<TransactionDTO> getTransactionsByUserId() {
         return TransactionMapper.INSTANCE.mapEntitiesToDtos(transactionRepository.findTransactionsByUserId(AuthService.getUser().getId()));
     }
@@ -44,15 +44,15 @@ public class TransactionService {
     public void addTransaction(TransactionRequestDTO transactionRequestDTO) {
         Long userId = AuthService.getUser().getId();
         BankAccountEntity senderBankAccountEntity = bankAccountRepository.findByIdForTransfer(transactionRequestDTO.getSenderAccountId()).orElseThrow(
-                ()->new NotFoundException("BANK_ACCOUNT_NOT_FOUND")
+                () -> new NotFoundException("BANK_ACCOUNT_NOT_FOUND")
         );
 
-        if (!Objects.equals(userId, senderBankAccountEntity.getUserEntity().getId())){
+        if (!Objects.equals(userId, senderBankAccountEntity.getUserEntity().getId())) {
             throw new AccountIsNotClosedToUserException("ACCOUNT_IS_NOT_CLOSED_TO_USER");
         }
 
         BankAccountEntity receiverrBankAccountEntity = bankAccountRepository.findByIdForTransfer(transactionRequestDTO.getReceiverAccountId()).orElseThrow(
-                ()->new NotFoundException("BANK_ACCOUNT_NOT_FOUND")
+                () -> new NotFoundException("BANK_ACCOUNT_NOT_FOUND")
         );
 
         if (!(senderBankAccountEntity.getBalance().compareTo(transactionRequestDTO.getAmount()) >= 0)) {

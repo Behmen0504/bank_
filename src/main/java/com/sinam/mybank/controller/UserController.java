@@ -24,30 +24,31 @@ public class UserController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public UserDTO getUser(){
+    public UserDTO getUser() {
         return userService.getUser();
     }
 
-
     @GetMapping("/accounts/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public BankAccountDTO getUserBankAccountByBankAccountId(@PathVariable Long id){
+    public BankAccountDTO getUserBankAccountByBankAccountId(@PathVariable Long id) {
         return bankAccountService.getUserBankAccountByBankAccountId(id);
     }
+
     @GetMapping("/accounts")
     @ResponseStatus(HttpStatus.OK)
-    public List<BankAccountDTO> getUserBankAccounts(){
+    public List<BankAccountDTO> getUserBankAccounts() {
         return bankAccountService.getUserBankAccounts();
     }
+
     @GetMapping("/active-accounts")
     @ResponseStatus(HttpStatus.OK)
-    public List<BankAccountDTO> getUserActiveBankAccounts(@RequestParam String fin){
+    public List<BankAccountDTO> getUserActiveBankAccounts(@RequestParam String fin) {
         return bankAccountService.getUserActiveBankAccounts(fin);
     }
 
     @PostMapping("/accounts")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void addBankAccount(@RequestBody BankAccountRequestDTO requestDTO){
+    public void addBankAccount(@RequestBody BankAccountRequestDTO requestDTO) {
         bankAccountService.addBankAccount(requestDTO);
     }
 

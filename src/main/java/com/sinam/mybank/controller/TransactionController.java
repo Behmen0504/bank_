@@ -27,7 +27,7 @@ public class TransactionController {
             @RequestParam(name = "fin", required = false) String fin,
             @RequestParam(name = "senderAccountId", required = false) Long senderAccountId
     ) {
-        return transactionService.getTransactions(id,fin,senderAccountId);
+        return transactionService.getTransactions(id, fin, senderAccountId);
     }
 
     @GetMapping("/user-all-transactions")

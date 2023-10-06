@@ -16,22 +16,22 @@ import java.util.List;
 public abstract class TransactionMapper {
     public static final TransactionMapper INSTANCE = Mappers.getMapper(TransactionMapper.class);
 
-
     @Mappings({
-            @Mapping(source = "transactionEntity.senderAccountEntity.id",target = "senderAccountId"),
-            @Mapping(source = "transactionEntity.receiverAccountEntity.id",target = "receiverAccountId")
+            @Mapping(source = "transactionEntity.senderAccountEntity.id", target = "senderAccountId"),
+            @Mapping(source = "transactionEntity.receiverAccountEntity.id", target = "receiverAccountId")
     })
     public abstract TransactionDTO mapEntityToDto(TransactionEntity transactionEntity);
 
     @Mappings({
-            @Mapping(source = "transactionRequestDTO.senderAccountId",target = "senderAccountEntity", qualifiedByName = "createBankAccountEntity"),
-            @Mapping(source = "transactionRequestDTO.receiverAccountId",target = "receiverAccountEntity", qualifiedByName = "createBankAccountEntity")
+            @Mapping(source = "transactionRequestDTO.senderAccountId", target = "senderAccountEntity", qualifiedByName = "createBankAccountEntity"),
+            @Mapping(source = "transactionRequestDTO.receiverAccountId", target = "receiverAccountEntity", qualifiedByName = "createBankAccountEntity")
     })
     public abstract TransactionEntity mapTransactionRequestDtoToEntity(TransactionRequestDTO transactionRequestDTO);
 
     public abstract List<TransactionDTO> mapEntitiesToDtos(List<TransactionEntity> transactionEntities);
+
     public BankAccountEntity createBankAccountEntity(Long id) {
-        if(id == null) return null;
+        if (id == null) return null;
         BankAccountEntity bankAccountEntity = new BankAccountEntity();
         bankAccountEntity.setId(id);
         return bankAccountEntity;

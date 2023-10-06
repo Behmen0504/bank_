@@ -3,7 +3,6 @@ package com.sinam.mybank.model.auth;
 public class AuthenticationResponse {
     private String token;
 
-
     public AuthenticationResponse() {
     }
 
