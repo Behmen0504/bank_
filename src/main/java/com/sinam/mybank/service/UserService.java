@@ -21,7 +21,4 @@ public class UserService {
         return UserMapper.INSTANCE.mapUserEntityToUserDto(userEntity);
     }
 
-
-
-
 }

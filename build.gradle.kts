@@ -2,6 +2,7 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.1.4"
 	id("io.spring.dependency-management") version "1.1.3"
+	groovy
 }
 
 group = "com.sinam"
@@ -16,8 +17,10 @@ repositories {
 }
 
 dependencies {
+	//jpa
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-validation")
+
+	//spring web
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
@@ -45,10 +48,13 @@ dependencies {
 	//validation
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 
-	runtimeOnly("com.h2database:h2")
+	//spock
+	testImplementation ("org.spockframework:spock-spring:2.3-groovy-4.0")
 
-	//log
-	implementation("ch.qos.logback:logback-classic:1.4.7")
+	//random create object
+	testImplementation("io.github.benas:random-beans:3.9.0")
+
+
 
 }
 

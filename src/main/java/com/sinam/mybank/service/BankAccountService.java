@@ -22,7 +22,7 @@ import java.util.List;
 public class BankAccountService {
     private final BankAccountRepository bankAccountRepository;
 
-    public BankAccountService(BankAccountRepository bankAccountRepository, UserRepository userRepository) {
+    public BankAccountService(BankAccountRepository bankAccountRepository) {
         this.bankAccountRepository = bankAccountRepository;
     }
 
