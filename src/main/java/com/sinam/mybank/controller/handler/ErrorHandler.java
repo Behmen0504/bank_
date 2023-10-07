@@ -22,23 +22,11 @@ public class ErrorHandler {
     }
 
     @ExceptionHandler(InvalidCredentialsException.class)
-    public ResponseEntity<String> handleInvalidCredentialsException(InvalidCredentialsException e) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(e.getMessage());
-    }
-
-    @ExceptionHandler(SQLException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    ExceptionDTO handle(SQLException e) {
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ExceptionDTO handleInvalidCredentialsException(InvalidCredentialsException e) {
         return new ExceptionDTO(e.getMessage());
     }
 
-
-    @ExceptionHandler(AuthenticationException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    ExceptionDTO handle(InvalidCredentialsException e) {
-        return new ExceptionDTO(e.getMessage());
-    }
 
 }
 

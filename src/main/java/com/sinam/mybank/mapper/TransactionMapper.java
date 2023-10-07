@@ -30,7 +30,7 @@ public abstract class TransactionMapper {
 
     public abstract List<TransactionDTO> mapEntitiesToDtos(List<TransactionEntity> transactionEntities);
 
-    public BankAccountEntity createBankAccountEntity(Long id) {
+    protected BankAccountEntity createBankAccountEntity(Long id) {
         if (id == null) return null;
         BankAccountEntity bankAccountEntity = new BankAccountEntity();
         bankAccountEntity.setId(id);

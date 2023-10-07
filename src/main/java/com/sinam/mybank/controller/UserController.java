@@ -5,6 +5,7 @@ import com.sinam.mybank.model.UserDTO;
 import com.sinam.mybank.model.requests.BankAccountRequestDTO;
 import com.sinam.mybank.service.BankAccountService;
 import com.sinam.mybank.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/user")
+@Tag(name = "User Controller")
 public class UserController {
     private final UserService userService;
     private final BankAccountService bankAccountService;
@@ -44,12 +46,6 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public List<BankAccountDTO> getUserActiveBankAccounts(@RequestParam String fin) {
         return bankAccountService.getUserActiveBankAccounts(fin);
-    }
-
-    @PostMapping("/accounts")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void addBankAccount(@RequestBody BankAccountRequestDTO requestDTO) {
-        bankAccountService.addBankAccount(requestDTO);
     }
 
 }
