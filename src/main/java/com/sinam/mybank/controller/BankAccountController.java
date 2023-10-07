@@ -37,6 +37,8 @@ public class BankAccountController {
         return bankAccountService.getBankAccount(id);
     }
 
+
+
     @GetMapping("/get-user-bank-account/{id}")
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("@permissionService.hasPermission({'USER'})")
@@ -56,10 +58,10 @@ public class BankAccountController {
         bankAccountService.activateBankAccount(bankAccountId);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deleting/{bankAccountId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBankAccount(@PathVariable Long id) {
-        bankAccountService.deleteBankAccount(id);
+    public void deleteBankAccount(@PathVariable Long bankAccountId) {
+        bankAccountService.deleteBankAccount(bankAccountId);
     }
 
 }

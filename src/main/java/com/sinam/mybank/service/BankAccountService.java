@@ -81,7 +81,13 @@ public class BankAccountService {
         bankAccountRepository.save(bankAccount);
     }
 
-    public void deleteBankAccount(Long id) {
+    public void deleteBankAccount(Long bankAccountId) {
+        BankAccountEntity bankAccountEntity = bankAccountRepository.findByIdAndUserEntity_Id(bankAccountId,AuthService.getUser().getId()).orElseThrow(
+                ()-> new NotFoundException("BANK_ACCOUNT_NOT_FOUND")
+        );
+        bankAccountEntity.setStatus(Status.DEACTIVE);
+
+        bankAccountRepository.save(bankAccountEntity);
     }
 
     public void activateBankAccount(Long bankAccountId) {
