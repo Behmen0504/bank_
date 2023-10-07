@@ -12,25 +12,3 @@ spring:
     show-sql: true
   liquibase:
     change-log: liquibase/changelog-master.yml
-#  mvc:
-#    pathmatch:
-#      matching-strategy: ant_path_matcher
-
-
-
-#spring:
-#  liquibase:
-#    change-log: liquibase/db.changelog-h2.xml
-#  datasource:
-#    driverClassName: org.h2.Driver
-#    url: jdbc:h2:mem:testdb  # H2 veritabanının bellek tabanlı bir sürümünü kullanıyoruz
-#    username: sa             # H2 varsayılan kullanıcı adı
-#    password:                # H2 varsayılan şifre
-#  h2:
-#    console:
-#      enabled: false          # H2 konsolunu etkinleştirin
-#      path: /h2-console
-#  jpa:
-#    hibernate:
-#      ddl-auto: update       # Veritabanı tablolarını otomatik olarak oluşturur/veya günceller (development için)
-#    show-sql: true

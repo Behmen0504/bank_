@@ -42,13 +42,8 @@ dependencies {
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
 
-	//db
-	runtimeOnly("com.h2database:h2")
-
 	//validation
 	implementation("org.springframework.boot:spring-boot-starter-validation")
-
-//	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.0")
 
 }
 
