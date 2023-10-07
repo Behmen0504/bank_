@@ -6,9 +6,8 @@ import com.sinam.mybank.dao.repository.BankAccountRepository;
 import com.sinam.mybank.dao.repository.TransactionRepository;
 import com.sinam.mybank.mapper.TransactionMapper;
 import com.sinam.mybank.model.TransactionDTO;
-import com.sinam.mybank.model.exception.AccountIsNotClosedToUserException;
-import com.sinam.mybank.model.exception.AmountGreaterThanBalanceException;
 import com.sinam.mybank.model.exception.NotFoundException;
+import com.sinam.mybank.model.exception.TransactionException;
 import com.sinam.mybank.model.requests.TransactionRequestDTO;
 import com.sinam.mybank.model.specifications.TransactionSpecifications;
 import com.sinam.mybank.service.auth.AuthService;
@@ -32,7 +31,6 @@ public class TransactionService {
     }
 
     public List<TransactionDTO> getTransactions(Long id, Long senderAccountId,String fin) {
-//        var transactions = transactionRepository.findTransactionsByCriteria(id, fin, senderAccountId);
         Specification<TransactionEntity> spec = Specification.where(TransactionSpecifications.hasTransactionId(id))
                 .and(TransactionSpecifications.hasSenderAccountId(senderAccountId))
                 .and(TransactionSpecifications.hasUserFin(fin));
@@ -56,7 +54,7 @@ public class TransactionService {
         );
 
         if (!Objects.equals(userId, senderBankAccountEntity.getUserEntity().getId())) {
-            throw new AccountIsNotClosedToUserException("ACCOUNT_IS_NOT_CLOSED_TO_USER"); //TRANSACTION EXCEPTION
+            throw new TransactionException("ACCOUNT_IS_NOT_CLOSED_TO_USER");
         }
 
         BankAccountEntity receiverrBankAccountEntity = bankAccountRepository.findByIdForTransfer(transactionRequestDTO.getReceiverAccountId()).orElseThrow(
@@ -64,7 +62,7 @@ public class TransactionService {
         );
 
         if (!(senderBankAccountEntity.getBalance().compareTo(transactionRequestDTO.getAmount()) >= 0)) {
-            throw new AmountGreaterThanBalanceException("AMOUNT_GREATER_THAN_BALANCE"); //TRANSACTION EXCEPTION
+            throw new TransactionException("AMOUNT_GREATER_THAN_BALANCE");
         }
         senderBankAccountEntity.setBalance(senderBankAccountEntity.getBalance().subtract(transactionRequestDTO.getAmount()));
         receiverrBankAccountEntity.setBalance(receiverrBankAccountEntity.getBalance().add(transactionRequestDTO.getAmount()));

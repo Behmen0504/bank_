@@ -7,7 +7,7 @@ import com.sinam.mybank.model.auth.UserRegisterRequestDto;
 import com.sinam.mybank.model.auth.AuthRequestDto;
 import com.sinam.mybank.model.auth.AuthenticationResponse;
 import com.sinam.mybank.model.exception.InvalidCredentialsException;
-import com.sinam.mybank.model.exception.UserNotFoundException;
+import com.sinam.mybank.model.exception.NotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -60,7 +60,7 @@ public class AuthService {
         }
 
         UserEntity user = userRepository.findUserByEmail(authRequestDto.getEmail()).orElseThrow(
-                () -> new UserNotFoundException("USER_NOT_FOUND")
+                () -> new NotFoundException("USER_NOT_FOUND")
         );
         var jwtToken = jwtService.generateToken(user);
 

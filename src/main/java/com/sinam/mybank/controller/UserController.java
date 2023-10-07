@@ -2,7 +2,6 @@ package com.sinam.mybank.controller;
 
 import com.sinam.mybank.model.BankAccountDTO;
 import com.sinam.mybank.model.UserDTO;
-import com.sinam.mybank.model.requests.BankAccountRequestDTO;
 import com.sinam.mybank.service.BankAccountService;
 import com.sinam.mybank.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;

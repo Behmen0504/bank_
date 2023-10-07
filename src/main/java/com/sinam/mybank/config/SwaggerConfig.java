@@ -11,10 +11,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SwaggerConfig {
 
-//    static {
-//        SpringDocUtils.getConfig().addRequestWrapperToIgnore(java.util.Optional.class);
-//    }
-
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()

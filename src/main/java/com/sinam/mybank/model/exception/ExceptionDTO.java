@@ -1,7 +1,6 @@
 package com.sinam.mybank.model.exception;
 
 
-
 public class ExceptionDTO {
     String code;
 
